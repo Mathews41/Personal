@@ -54,6 +54,11 @@ function Post(props) {
             })
         })
     }
+    const onDelete = () => {
+        axios.delete(`/api/post/${id}`).then(() => {
+            props.history.push('/dashboard')
+        })
+    }
   const classes = useStyles();
 
   return (
@@ -98,7 +103,7 @@ function Post(props) {
             Submit
             </Button>
             :
-            <Button onClick= {() => this.handleDeletePost(this.props.vehicle.id)} size="small" color="primary">
+            <Button onClick= {onDelete} size="small" color="primary">
             Delete
             </Button>
         }

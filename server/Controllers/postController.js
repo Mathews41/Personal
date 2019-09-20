@@ -33,7 +33,7 @@ const updatePost = (req,res) => {
         res.status(200).send('these are fresh')
     })
 }
-const deletePost = async (req,res) => {
+const deletePost = (req,res) => {
     const{id} = req.params
     const db = req.app.get('db')
     db.delete_post(id).then(() => {
