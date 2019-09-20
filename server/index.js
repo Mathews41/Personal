@@ -38,6 +38,7 @@ app.delete('/auth/logout', authCtrl.logout)
 app.get('/api/post/getAll', postCtrl.getPosts)
 app.get('/api/post/:id', postCtrl.getPost)
 app.post('/api/post/add', postCtrl.addPost)
+app.put('/api/post/:id', postCtrl.updatePost)
 
 app.listen(SERVER_PORT,() => console.log('server be mile high clubbin'))
 

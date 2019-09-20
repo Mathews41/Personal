@@ -7,6 +7,9 @@ import axios from 'axios'
 import Menu from '@material-ui/core/Menu';
 import MenuIcon from '@material-ui/icons/Menu';
 import logo from '../Nav/eda14f46-7fa9-4d0b-8644-3ef642999da2_200x200.png'
+import {makeStyles} from '@material-ui/core/styles'
+import Avatar from '@material-ui/core/Avatar'
+import Grid from '@material-ui/core/Grid'
 
 
 
@@ -38,13 +41,20 @@ class Navbar extends Component {
         
     
     render() {
+       console.log(this.props.profile_pic)
+
         if (this.props.location.pathname !== '/'){
         return (
             <div className='navbar'>
                 <Link to='/account'>
-                <img className='profilepic' src={this.props.profile_pic} />
+                <Grid container justify="center" alignItems="center">
+            <Avatar alt="profile" src={this.props.profile_pic} className='avatar' />
+                </Grid>
+                {/* <img className='profilepic' src={this.props.profile_pic} /> */}
                 </Link>
-                <img src= {logo} alt ='logo'></img>
+                <Link to='/dashboard'>
+                <img className='logo' src= {logo} alt ='logo'></img>
+                </Link>
                 <MenuIcon className='hamburger' onClick={this.slide}></MenuIcon>
                 
 
@@ -56,10 +66,13 @@ class Navbar extends Component {
                     }>
                         
                 <Link to ='/dashboard'>
-                    Dashboard
+                   <div onClick={this.state.toggleMenu}> Dashboard</div>
                 </Link>
                 <Link to='new'>
                     New Post
+                </Link>
+                <Link to='myVehicles'>
+                    My Vehicles
                 </Link>
                 <Link to ='/' onClick={this.logout}>
                     Logout
@@ -75,8 +88,9 @@ class Navbar extends Component {
     }
 }
 function mapStateToProps(reduxState) {
-    const {username, userId, profile_pic} = reduxState
-    return {username, userId, profile_pic}
+    const {email,username, id, profile_pic} = reduxState.user
+    return {email,username, id, profile_pic}
+    
 }
 
 

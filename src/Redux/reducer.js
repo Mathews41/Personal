@@ -56,9 +56,8 @@ export default function reducer(state = initialState, action){
     console.log(action)
     switch(action.type){
         case ADD_USER:
-            const {user, allPosts} = action.payload
-            console.log(user,allPosts)
-            return {...state, user, allPosts}
+            const user = {...action.payload}
+            return {...state, user}
         case RELOAD_USER:
             return{...state, user:action.payload}
         case ADD_POST:

@@ -4,7 +4,8 @@ export default class myVehicles extends Component {
     render() {
         return (
             <div>
-                myVehicles
+                vroom vroom bitch
+                
             </div>
         )
     }

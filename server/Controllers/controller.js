@@ -2,7 +2,6 @@ const bcrypt = require('bcryptjs')
 
 const register = async (req, res) => {
     const {email, username, password, profile_pic} = req.body
-    const {session} = req
     const db = req.app.get('db')
     const foundUser = await db.find_user([email])
     if (foundUser[0]) {
@@ -14,7 +13,7 @@ const register = async (req, res) => {
     const newUser = await db.register_user([email,passwordHash,username,profile_pic])
     delete newUser[0].password
     req.session.user = newUser[0]
-    console.log(session,'sessions')
+    console.log(req.session,'sessions')
     res.status(200).send(newUser[0])
 }
 const login = async (req, res) => {

@@ -12,6 +12,7 @@ class Form extends Component {
             make:'',
             model:'',
             year:'',
+            URL:'',
             content:''
         }
     }
@@ -23,19 +24,19 @@ class Form extends Component {
     }
 
     submitPost = () => {
-        const {user_id, title, name, make, model, year, profile_pic, content} = this.state
-        const addPost = {...this.props.user, user_id, title, name, make, model, year, profile_pic, content}
+        const {user_id, title, name, make, model, year, URL, content} = this.state
+        const addPost = {...this.props.user, user_id, title, name, make, model, year, URL, content}
         console.log(addPost)
         axios.post('/api/post/add', addPost).then(res => {
             console.log(res.data)
             this.props.history.push('/dashboard')
 
+            axios.get('api/post/getAll').then((res) => {
+                // console.log(res.data)
+                this.setState({displayPosts: res.data})
+            })
         })
         
-        axios.get('api/post/getAll').then((res) => {
-            // console.log(res.data)
-            this.setState({displayPosts: res.data})
-        })
     }
 
 

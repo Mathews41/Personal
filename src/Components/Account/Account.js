@@ -1,44 +1,23 @@
-import React, { Component } from 'react'
-import './Account.css'
+import React from 'react'
+import {makeStyles} from '@material-ui/core/styles'
+import Avatar from '@material-ui/core/Avatar'
+import Grid from '@material-ui/core/Grid'
 
-export default class Account extends Component {
-    constructor() {
-        super()
-        this.state = {
-            username:'',
-            password:'',
-            profile_pic:''
-        }
-    }
-    render() {
-        return (
-                <div className='Account-background'>
-                <div className='Account-container'>
-                    <h3>Account Info</h3>
-                    <div className='account-input'>
-                        <label>Username</label>
-                        <input type='text' name='username' onChange={this.handleInput}></input>
-                    </div>
-                    <div className='account-input'>
-                        <label>Email</label>
-                        <input type='email' name='email' onChange={this.handleInput}></input>
-                    </div>
-                    <div className='form-input'>
-                        <label>password</label>
-                        <input type='password' name='password' onChange={this.handleInput}></input>
-                    </div>
-                    <div className='form-input'>
-                        <label>Profile Picture</label>
-                        <input type='URL' name='profilepic' onChange={this.handleInput}></input>
-                    </div>
-                    
-                </div>
-                <div className='submit-btn'>
-                    <button>Submit</button>
-                </div>
+const useStyles = makeStyles({
+    avatar: {
+        margin: 10,
+        width:60,
+        height: 60,
+    },
+});
+export default function ImageAvatars() {
+    const classes = useStyles();
 
-                
-            </div>
-        )
-    }
+    return(
+        <Grid container justify='center' alignItems='center'>
+            <Avatar alt='profilepic' src='' className={classes.avatar}/>
+        </Grid>
+
+    )
 }
+

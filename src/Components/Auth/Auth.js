@@ -40,7 +40,7 @@ class Auth extends Component {
 
     login = () => {
         const {email, password} = this.state
-        axios.post('http://localhost:8181/auth/login', {email, password})
+        axios.post('/auth/login', {email, password})
         .then(response => {
             this.props.addUser(response.data)
             if(this.state.error !== true){
@@ -54,13 +54,13 @@ class Auth extends Component {
 
     register = () => {
         const {email, username, password, profile_pic} = this.state;
-        axios.post('http://localhost:8181/auth/register',
+        axios.post('/auth/register',
         {email,username,password,profile_pic})
         .then(response => {
+            console.log(response.data)
             this.props.addUser(response.data)
-            if(this.state.error !== true){
-                this.props.history.push('/dashboard')
-            }
+            
+            this.props.history.push('/dashboard')
         })
         .catch(error => {
             console.log(error)

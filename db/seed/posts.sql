@@ -6,6 +6,6 @@ create table posts (
     make varchar(20),
     model varchar(50),
     year int,
-    profile_pic text,
+    URL text,
     content text
 )

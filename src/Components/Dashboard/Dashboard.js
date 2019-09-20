@@ -12,18 +12,38 @@ class Dashboard extends Component {
         this.state = {
            search: '',
            includeMyPosts: true,
-           displayPosts:[]
+           displayPosts:[],
+           filteredPosts:[],
+           data: []
         }
     }
 
     componentDidMount(){
         // console.log(this.props)
         axios.get('api/post/getAll').then((res) => {
-            // console.log(res.data)
-            this.setState({displayPosts: res.data})
+            const display = this.dataDisplay(res.data)
+            console.log(res.data)
+            this.setState({displayPosts: display})
+            this.setState({data:res.data})
+            console.log(this.state.data)
         })
     }
-
+    dataDisplay = (temp) => {
+        console.log(temp)
+        let data = temp.map((e, i) => {
+            return <Link to={`/post/${e.id}`}>
+            <div className='my-posts-container' key={i}>
+                {e.title} 
+                {e.make}  
+                {e.model} 
+                {e.year} 
+                {e.url} 
+                {e.content}
+                </div>
+            </Link>
+        })
+        return data
+    }
     searchBar = () => {
         const {search} = this.state
         const {userId} = this.props
@@ -58,22 +78,28 @@ class Dashboard extends Component {
         this.setState({
             [e.target.name]: e.target.value
         })
-        const filteredPosts = this.props.allPosts.filter(post => post.title.includes(e.target.value))
+        const filteredPosts = this.state.displayPosts.filter(post => post.title.includes(e.target.value))
         console.log(filteredPosts)
         this.setState({
-            displayPosts: filteredPosts
+            filteredPosts: filteredPosts
         })
     }
     render() {
         let posts = []
+        console.log(this.state.data)
         this.state.includeMyPosts ?
-            posts = this.state.displayPosts
+            posts = this.state.data
             :
-            posts = this.state.displayPosts.filter(post => post.user_id !== this.props.user.id) 
-        
-        const listedPosts = posts.map((post, i) => {
-            return <Postlisting key={i} post={post}/>
-        })
+            posts = this.state.data.filter(post => post.user_id !== this.props.state.user.id) 
+        posts = this.dataDisplay(posts)
+        console.dir(posts)
+        // console.log(posts)
+        // let listedPosts = []
+        // // this.state.filteredPosts === [] ?
+        // //     listedPosts = this.dataDisplay(posts)
+        // //     :
+        //     listedPosts = this.dataDisplay(this.state.filteredPosts)
+        //     console.dir(listedPosts)
         return (
             <div className="dashboard-container">
                 <div className='top-nav-container'>
@@ -85,13 +111,14 @@ class Dashboard extends Component {
                             <button className="reset" onClick={this.resetSearch}>X</button>
                         </div>
                         <div className='my-posts-container'>
-                            <label>Exclude My Posts</label>
-                            <input className='input-checkbox' onClick={() => this.setState({includeMyPosts: !this.state.includeMyPosts})} type="checkbox"/>
+                            {/* <label>Exclude My Posts</label>
+                            <input className='input-checkbox' onClick={() => this.setState({includeMyPosts: !this.state.includeMyPosts})} type="checkbox"/> */}
                         </div>
                     </div>
                 </div>
                 <div className='posts-container'>
-                    {listedPosts}
+                    {posts}
+
                 </div>
             </div>
         )
