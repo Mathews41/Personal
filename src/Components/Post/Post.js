@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, createMuiTheme } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
@@ -9,18 +9,16 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import axios from 'axios'
 import {withRouter} from 'react-router-dom'
+import './Post.css'
 
-const useStyles = makeStyles({
-  card: {
-    maxWidth: 345,
-  },
-  media: {
-    height: 150,
-  },
-});
+
+
 
 function Post(props) {
-    const [picture, setPicture] = useState('') 
+    const [picture, setPicture] = useState('')
+    const [make, setMake] = useState('') 
+    const [model, setModel] = useState('') 
+    const [year, setYear] = useState('') 
     const [title, setTitle] = useState('') 
     const [content, setContent] = useState('') 
     const [id, setID] = useState(-1)
@@ -33,7 +31,9 @@ function Post(props) {
         axios.get(`/api/post/${id}`).then ((res) => {
             console.dir(res.data)
             setPicture(res.data.url)
-            console.log(res.data.url)
+            setMake(res.data.make)
+            setModel(res.data.model)
+            setYear(res.data.year)
             setTitle(res.data.title)
             setContent(res.data.content)
 
@@ -42,11 +42,13 @@ function Post(props) {
 
     const onSubmit = () => {
         console.log(picture, title, content)
-        axios.put(`/api/post/${id}`,{title, picture, content}).then(() => {
+        axios.put(`/api/post/${id}`,{title, make, model, year, picture, content}).then(() => {
             axios.get(`/api/post/${id}`).then ((res) => {
                 console.dir(res.data)
                 setPicture(res.data.url)
-                console.log(res.data.url)
+                setMake(res.data.make)
+                setModel(res.data.model)
+                setYear(res.data.year)
                 setTitle(res.data.title)
                 setContent(res.data.content)
                 setEdit(false)
@@ -59,30 +61,54 @@ function Post(props) {
             props.history.push('/dashboard')
         })
     }
-  const classes = useStyles();
+    
 
   return (
-    <Card className={classes.card}>
+    
+    <Card className='card'>
+      
       <CardActionArea>
-        {edit? <input name='picture' onChange={(e) => setPicture(e.target.value)}/>
+        {edit? <input className='img' name='picture' placeholder='Image' onChange={(e) => setPicture(e.target.value)}/>
         :
         <CardMedia
-          className={classes.media}
+          className='cardmedia'
           image={picture}
           title={title}
         />}
-        <CardContent>
+        <CardContent className='cardContent' >
         {edit ? 
-            <input name='title' onChange={(e) => setTitle(e.target.value)}/>
+            <input name='Title' placeholder='Title' onChange={(e) => setTitle(e.target.value)}></input>
             :
             <Typography gutterBottom variant="h5" component="h2">
                 {title}
             </Typography>
         }
         {edit ? 
-            <input name='Content' onChange={(e) => setContent(e.target.value)}/>
+            <input className='input' name='Year' placeholder='Year' onChange={(e) => setYear(e.target.value)}></input>
             :
-            <Typography variant="body2" color="textSecondary" component="p">
+            <Typography gutterBottom variant="h5" component="h2">
+                {year}
+            </Typography>
+        }
+         {edit ? 
+            <input className='input' name='Make' placeholder='Make' onChange={(e) => setMake(e.target.value)}></input>
+            :
+            <Typography gutterBottom variant="h5" component="h2">
+                {make}
+            </Typography>
+        }
+         {edit ? 
+            <input className='input' name='Model' placeholder='Model' onChange={(e) => setModel(e.target.value)}></input>
+            :
+            <Typography gutterBottom variant="h5" component="h2" size='18pt'>
+                {model}
+            </Typography>
+        }
+         
+        {edit ? 
+            <input name='Content' placeholder='Content' onChange={(e) => setContent(e.target.value)}/>
+            :
+            <Typography variant="body2" component="p">
             {content}
             </Typography>
         }
@@ -90,20 +116,20 @@ function Post(props) {
             </CardActionArea>
             <CardActions>
         {edit ?  
-            <Button size="small" color="primary">
+            <Button className='btn' size="small" >
             Cancel
             </Button>
             :
-            <Button onClick={() => setEdit(!edit)} size="small" color="primary">
+            <Button className='btn' onClick={() => setEdit(!edit)} size="small">
             Edit
             </Button>
         }
         {edit ?  
-            <Button onClick={onSubmit} size="small" color="primary">
+            <Button onClick={onSubmit} size="small">
             Submit
             </Button>
             :
-            <Button onClick= {onDelete} size="small" color="primary">
+            <Button className='btn' onClick= {onDelete} size="small">
             Delete
             </Button>
         }

@@ -1,9 +1,15 @@
 .app-container {
   width: 100vw;
-  height: auto;
+  height: 100vh;
   display: flex;
   background: white;
   justify-content: center;
   z-index: 0;
   margin:0;
+  background-image: url(https://wallpaperaccess.com/full/11400.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+body {
+  
 }

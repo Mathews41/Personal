@@ -247,7 +247,7 @@ input {
         justify-content: space-evenly;
         align-items: center;
         margin: 0;
-        background: rgb(90, 90, 90)
+        background: rgb(90, 90, 90);
     
     }
     #root {
@@ -259,23 +259,25 @@ input {
 
 
     }
-    .app-container {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    margin-right: 0%;
-    background: rgb(90, 90, 90)    
-
-
-}
-.otherbox {
-    height: 100%;
+    .otherbox {
+    height: 60vh;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 0;
 
 }
+.app-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    background: rgb(90, 90, 90);
+
+
+
+}
+
 .logo {
     width: 300px;
     height: 350px;
@@ -283,7 +285,7 @@ input {
 
 }
 .auth-container {
-    height: 400px;
+    height: 100%;
     width: 100%;
     display: flex;
 

@@ -4,7 +4,8 @@ import {connect} from 'react-redux'
 
 import {addUser} from '../../Redux/reducer'
 import './Auth.css'
-import logo from '../Auth/eda14f46-7fa9-4d0b-8644-3ef642999da2_200x200.png'
+import logo from '../Nav/IMG_2959.JPG'
+
 
 
 

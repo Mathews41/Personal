@@ -44,9 +44,7 @@ class Form extends Component {
         return (
             <div className='form-background'>
                 <div className='form-container'>
-                    <h3 className='new-post'>
-                        New Post
-                    </h3>
+                    
                     <div className='form-input'>
                         <label>Title</label>
                         <input type='text' name='title' onChange={this.handleInput}></input>
@@ -71,12 +69,11 @@ class Form extends Component {
                         <label>Content</label>
                         <input type='text' name='content' onChange={this.handleInput}></input>
                     </div>
-                </div>
-                <div className='submit-btn'>
-                    <button onClick={this.submitPost}>Submit</button>
-                </div>
-
                 
+                    <button onClick={this.submitPost}>Submit</button>
+
+
+                </div>
             </div>
         )
     }

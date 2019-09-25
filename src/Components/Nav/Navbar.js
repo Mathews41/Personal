@@ -4,10 +4,8 @@ import {connect} from 'react-redux'
 import './Navbar.css'
 import {reloadUser} from '../../Redux/reducer'
 import axios from 'axios'
-import Menu from '@material-ui/core/Menu';
 import MenuIcon from '@material-ui/icons/Menu';
-import logo from '../Nav/eda14f46-7fa9-4d0b-8644-3ef642999da2_200x200.png'
-import {makeStyles} from '@material-ui/core/styles'
+import logo from '../Nav/IMG_2959.JPG'
 import Avatar from '@material-ui/core/Avatar'
 import Grid from '@material-ui/core/Grid'
 
@@ -46,16 +44,15 @@ class Navbar extends Component {
         if (this.props.location.pathname !== '/'){
         return (
             <div className='navbar'>
-                <Link to='/account'>
-                <Grid container justify="center" alignItems="center">
-            <Avatar alt="profile" src={this.props.profile_pic} className='avatar' />
+                <div className='navbaritems'>
+                <Grid id='avatar'>
+            <Avatar alt="profile"  src={this.props.profile_pic} id='avatar' />
                 </Grid>
-                {/* <img className='profilepic' src={this.props.profile_pic} /> */}
-                </Link>
                 <Link to='/dashboard'>
                 <img className='logo' src= {logo} alt ='logo'></img>
                 </Link>
                 <MenuIcon className='hamburger' onClick={this.slide}></MenuIcon>
+                </div>
                 
 
                 <div className={
@@ -68,12 +65,12 @@ class Navbar extends Component {
                 <Link to ='/dashboard'>
                    <div onClick={this.state.toggleMenu}> Dashboard</div>
                 </Link>
-                <Link to='new'>
+                <Link to='/new'>
                     New Post
                 </Link>
-                <Link to='myVehicles'>
+                {/* <Link to='myVehicles'>
                     My Vehicles
-                </Link>
+                </Link> */}
                 <Link to ='/' onClick={this.logout}>
                     Logout
                 </Link>
