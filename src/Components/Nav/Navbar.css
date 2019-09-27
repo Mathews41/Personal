@@ -3,7 +3,7 @@
 
 .navbar{
     width: 100%;
-    height: 15%;
+    height: 15vh;
     display: flex;
     flex-direction: row;
     background:black;
@@ -19,7 +19,7 @@
     height: 100%;
     display: flex;
     flex-direction: row;
-    background:black;
+    background:transparent;
     justify-content: space-evenly;
     align-items: center;
     z-index: 4;
@@ -46,7 +46,7 @@
     right: 0%;
     display: flex;
     flex-direction: column;
-    top:-10%;    
+    top:-20%;    
     justify-content: flex-start;
     z-index: -1;
     font-family: 'Fugaz One'

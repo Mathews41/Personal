@@ -2,45 +2,13 @@
 
 @import url('https://fonts.googleapis.com/css?family=Fugaz+One&display=swap');   
 
-body {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    background-image: url(https://wallpaperaccess.com/full/11400.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-
-}
-.root {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-            
-}
-
-.app-container {
-    width: 100%;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-    margin-top: 10%;
-    
-    
-}
 .card {
-    height: auto;
-    width: 100%;
+    height: 80%;
+    width: 90%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
-    overflow: scroll;
+    text-align: justify;
     font-family: 'Fugaz One';
     
 
@@ -52,20 +20,26 @@ body {
 
 
 }
+.cardContent {
+        width: 88%;
+        height: 30vh;
+        margin: 5px;
+        word-wrap: normal;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow: scroll;
+
+}
 .btn {
     font-family: 'Fugaz One';
     color: #17778C;
     
 }
-.cardContent {
-    width: 88%;
-    height: auto;
-    word-wrap: normal;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
+#action-area {
+    height: 90%;
 }
+
 .cardContent > h2 {
     font-size: 14pt;
     font-family: 'Fugaz One';
@@ -73,155 +47,160 @@ body {
 .cardContent > p {
     font-size: 12pt;
     width: 99%;
-
-
-    
+}
+input {
+    width: 90%;
+    height: 10%;
+}
+.cardbtns{
+    height: 10%;
+    width: 100%;
+}
+.btns {
+    display: flex;
+    justify-content: space-around;
+    /* align-items: center; */
+    height: 100%;
+    width: 100%;
 }
 }
-@media (min-width: 415px){ 
+@media (min-width: 415px) and (max-width: 768px){ 
 
 @import url('https://fonts.googleapis.com/css?family=Fugaz+One&display=swap');   
 
-body {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    background-image: url(https://wallpaperaccess.com/full/11400.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
 
-}
-.root {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-            
-}
-
-.app-container {
-    width: 80%;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-    margin-top: 100px;
-    
-}
 .card {
-    height: auto;
-    width: 80%;
+    height: 90%;
+    width: 90%;
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     align-items: center;
-    text-align: center;
-    overflow: scroll;
+    text-align: justify;
     font-family: 'Fugaz One';
-    padding: 0;
+
+
+    
 
 }
 .cardmedia {
-    height: 30vh;
+    height: 150px;
     width: 100%;
     font-family: 'Fugaz One';
 
 
+}
+
+#action-area {
+    height: 90%;
+}
+.cardContent {
+    width: 88%;
+    height: 38vh;
+    margin-left: 10px;
+    word-wrap: normal;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: scroll;
+
+}
+.cardbtns{
+    height: 10%;
+    width: 100%;
 }
 .btn {
     font-family: 'Fugaz One';
     color: #17778C;
     
 }
+
+.btns {
+    display: flex;
+    justify-content: space-around;
+    /* align-items: center; */
+    height: 100%;
+    width: 100%;
+}
+
+.cardContent > h2 {
+    font-size: 14pt;
+    font-family: 'Fugaz One';
+}
+.cardContent > p {
+    font-size: 12pt;
+    width: 99%;
+}
+input {
+    width: 90%;
+    height: 10%;
+}
 }
 @media (min-width: 769px){ 
 
     @import url('https://fonts.googleapis.com/css?family=Fugaz+One&display=swap');   
     
-    body {
-        width: 100vw;
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        background-image: url(https://wallpaperaccess.com/full/11400.jpg);
-        background-repeat: no-repeat;
-        background-size: cover;
-
-
-    }
-    .root {
-        width: 100vw;
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        padding: 0;
-                
-    }
-    
-    .app-container {
-        width: 80%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-        align-items: center;
-        background: transparent;
-        
-    }
     .card {
-        height: auto;
+        height: 90%;
         width: 80%;
         display: flex;
-        flex-direction: column;
+        flex-wrap: wrap;
         align-items: center;
-        text-align: center;
-        overflow: scroll;
+        text-align: justify;
         font-family: 'Fugaz One';
-        padding: 0;
+    
+    
+        
     
     }
     .cardmedia {
-        height: 50vh;
+        height: 50%;
         width: 100%;
         font-family: 'Fugaz One';
-        
     
     
+    }
+    
+    #action-area {
+        height: 90%;
+    }
+    .cardContent {
+        width: 88%;
+        height: 38vh;
+        margin-left: 10px;
+        word-wrap: normal;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow: scroll;
+    
+    }
+    .cardbtns{
+        height: 10%;
+        width: 100%;
     }
     .btn {
         font-family: 'Fugaz One';
         color: #17778C;
-}
-    .cardContent {
-    width: 93%;
-    height: auto;
-    word-wrap: normal;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-right: 0;
-    font-family: 'Fugaz One'
-
-}
-    .cardContent > h2 {
-    font-size: 14pt;
-    font-family: 'Fugaz One';
-    color: #17778C;
-    padding: 0;
-
-}
-    .cardContent > p {
-    font-size: 12pt;
-    width: 99%;
-    font-family: 'Fugaz One';
-    color: #17778C;
-
-
+        
+    }
     
-}
-
-input {
-    width: 500px;
-    height: 30px;
-}
-}
+    .btns {
+        display: flex;
+        justify-content: space-around;
+        /* align-items: center; */
+        height: 100%;
+        width: 100%;
+    }
+    
+    .cardContent > h2 {
+        font-size: 14pt;
+        font-family: 'Fugaz One';
+    }
+    .cardContent > p {
+        font-size: 12pt;
+        width: 99%;
+    }
+    input {
+        width: 90%;
+    }
+}    

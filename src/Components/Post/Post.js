@@ -23,6 +23,7 @@ function Post(props) {
     const [content, setContent] = useState('') 
     const [id, setID] = useState(-1)
     const [edit, setEdit] = useState(false)
+    const [data, setData] = useState(null)
 
 
     useEffect(() => {
@@ -30,6 +31,7 @@ function Post(props) {
         console.log(props.match)
         axios.get(`/api/post/${id}`).then ((res) => {
             console.dir(res.data)
+            setData(res.data)
             setPicture(res.data.url)
             setMake(res.data.make)
             setModel(res.data.model)
@@ -39,6 +41,19 @@ function Post(props) {
 
         })
     },[props.match, id])
+
+    const cancelNeedsreload = () => {
+        axios.get(`/api/post/${id}`).then ((res) => {
+            console.dir(res.data)
+            setData(res.data)
+            setPicture(res.data.url)
+            setMake(res.data.make)
+            setModel(res.data.model)
+            setYear(res.data.year)
+            setTitle(res.data.title)
+            setContent(res.data.content)
+        })
+    }
 
     const onSubmit = () => {
         console.log(picture, title, content)
@@ -61,78 +76,87 @@ function Post(props) {
             props.history.push('/dashboard')
         })
     }
+    const onCancel = () => {
+       cancelNeedsreload() 
+       setEdit(false)
+        
+    }
     
 
   return (
     
     <Card className='card'>
-      
-      <CardActionArea>
-        {edit? <input className='img' name='picture' placeholder='Image' onChange={(e) => setPicture(e.target.value)}/>
-        :
-        <CardMedia
-          className='cardmedia'
-          image={picture}
-          title={title}
-        />}
-        <CardContent className='cardContent' >
-        {edit ? 
-            <input name='Title' placeholder='Title' onChange={(e) => setTitle(e.target.value)}></input>
-            :
-            <Typography gutterBottom variant="h5" component="h2">
-                {title}
-            </Typography>
-        }
-        {edit ? 
-            <input className='input' name='Year' placeholder='Year' onChange={(e) => setYear(e.target.value)}></input>
-            :
-            <Typography gutterBottom variant="h5" component="h2">
-                {year}
-            </Typography>
-        }
-         {edit ? 
-            <input className='input' name='Make' placeholder='Make' onChange={(e) => setMake(e.target.value)}></input>
-            :
-            <Typography gutterBottom variant="h5" component="h2">
-                {make}
-            </Typography>
-        }
-         {edit ? 
-            <input className='input' name='Model' placeholder='Model' onChange={(e) => setModel(e.target.value)}></input>
-            :
-            <Typography gutterBottom variant="h5" component="h2" size='18pt'>
-                {model}
-            </Typography>
-        }
-         
-        {edit ? 
-            <input name='Content' placeholder='Content' onChange={(e) => setContent(e.target.value)}/>
-            :
-            <Typography variant="body2" component="p">
-            {content}
-            </Typography>
-        }
+        <CardActionArea id='action-area'>
+            {edit? 
+                null
+                :
+                <CardMedia
+                className='cardmedia'
+                image={picture}
+                title={title}
+                />}
+            <CardContent className='cardContent' >
+                {edit? <input className='img' name='picture' placeholder='Image' onChange={(e) => setPicture(e.target.value)}/> :
+            null}
+                {edit ? 
+                    <input name='Title' placeholder='Title' onChange={(e) => setTitle(e.target.value)}></input>
+                    :
+                    <Typography gutterBottom variant="h5" component="h2">
+                        {title}
+                    </Typography>
+                }
+                {edit ? 
+                    <input className='input' name='Year' placeholder='Year' onChange={(e) => setYear(e.target.value)}></input>
+                    :
+                    <Typography gutterBottom variant="h5" component="h2">
+                        {year}
+                    </Typography>
+                }
+                {edit ? 
+                    <input className='input' name='Make' placeholder='Make' onChange={(e) => setMake(e.target.value)}></input>
+                    :
+                    <Typography gutterBottom variant="h5" component="h2">
+                        {make}
+                    </Typography>
+                }
+                {edit ? 
+                    <input className='input' name='Model' placeholder='Model' onChange={(e) => setModel(e.target.value)}></input>
+                    :
+                    <Typography gutterBottom variant="h5" component="h2" size='18pt'>
+                        {model}
+                    </Typography>
+                }
+                
+                {edit ? 
+                    <input name='Content' placeholder='Content' onChange={(e) => setContent(e.target.value)}/>
+                    :
+                    <Typography variant="body2" component="p">
+                    {content}
+                    </Typography>
+                }
             </CardContent>
-            </CardActionArea>
-            <CardActions>
-        {edit ?  
-            <Button className='btn' size="small" >
-            Cancel
-            </Button>
-            :
-            <Button className='btn' onClick={() => setEdit(!edit)} size="small">
-            Edit
-            </Button>
-        }
-        {edit ?  
-            <Button onClick={onSubmit} size="small">
-            Submit
-            </Button>
-            :
-            <Button className='btn' onClick= {onDelete} size="small">
-            Delete
-            </Button>
-        }
+        </CardActionArea>
+        <CardActions className="cardbtns">
+            <div className="btns">
+                {edit ?  
+                    <Button className='btn' onClick={onCancel} size="small" >
+                    Cancel
+                    </Button>
+                    :
+                    <Button className='btn' onClick={() => setEdit(!edit)} size="small">
+                    Edit
+                    </Button>
+                }
+                {edit ?  
+                    <Button onClick={onSubmit} size="small">
+                    Submit
+                    </Button>
+                    :
+                    <Button className='btn' onClick= {onDelete} size="small">
+                    Delete
+                    </Button>
+                }
+            </div>
       </CardActions>
     </Card>
   );
