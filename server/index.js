@@ -4,7 +4,7 @@ const massive = require('massive')
 const authCtrl = require('./Controllers/controller')
 const session = require('express-session')
 const cors = require('cors')
-const postCtrl = require('./controllers/postController')
+const postCtrl = require('./Controllers/postController')
 // const feather = require('feather-icons')
 
 const app = express()
